@@ -1,0 +1,10 @@
+rules_version = '2';
+// ACESSO ABERTO: qualquer pessoa com o link pode ler e gravar (sem senha), como pedido.
+// Atenção: quem tiver o link pode alterar ou apagar dados. Faça backups (Gerencial → Configurações → Backup).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{colecao}/{documento} {
+      allow read, write: if colecao in ['planilhas', 'mensal', 'cadastros', 'config', 'presenca', 'auditoria', 'pessoas'];
+    }
+  }
+}
